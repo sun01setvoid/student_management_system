@@ -5,8 +5,8 @@ int main()
 	int n = 0;
 	int m = 0;
 	int i, j;
-	char ch;
-	int first = 1;
+	char ch,c;
+	int first = 1;//标记系统中是否有学生成绩信息
 	STU stu[STU_NUM];
 
 	system("mode con cols = 130 lines = 60");
@@ -18,20 +18,81 @@ int main()
 		switch (ch)
 		{
 		case 1:
+			system("cls");
+			InputRecord(&n, &m, stu);
+			first = 0;
+			system("pause");
 			break;
 		case 2:
+			system("cls");
+			if (first) {
+				printf("系统中尚无学生成绩信息，请先输入\n");
+				system("pause");
+				break;
+			}
+			AppendRecord(&n, m, stu);
+			system("pause");
 			break;
 		case 3:
+			system("cls");
+			if (first) {
+				printf("系统中尚无学生成绩信息，请先输入\n");
+				system("pause");
+				break;
+			}
+			DeleteRecord(&n, m, stu);
+			system("pause");
 			break;
 		case 4:
+			system("cls");
+			if (first) {
+				printf("系统中尚无学生成绩信息，请先输入\n");
+				system("pause");
+				break;
+			}
+			SearchByNumber(n, m, stu);
+			system("pause");
 			break;
 		case 5:
+			system("cls");
+			if (first) {
+				printf("系统中尚无学生成绩信息，请先输入\n");
+				system("pause");
+				break;
+			}
+			SearchByName(n, m, stu);
+			system("pause");
 			break;
 		case 6:
+			system("cls");
+			if (first) {
+				printf("系统中尚无学生成绩信息，请先输入\n");
+				system("pause");
+				break;
+			}
+			ModifyRecord(n, m, stu);
+			system("pause");
 			break;
 		case 7:
+			system("cls");
+			if (first) {
+				printf("系统中尚无学生成绩信息，请先输入!\n");
+				system("pause");
+				break;
+			}
+			CalculateScoreOfStudent(n, m, stu);
+			system("pause");
 			break;
 		case 8:
+			system("cls");
+			if (first) {
+				SetPosition(POS_X3, POS_Y);
+				printf("系统中尚无学生成绩信息，请先输入!\n");
+				system("pause");
+				break;
+			}
+			CalculateScoreOfCourse(n, m, stu);
+			system("pause");
 			break;
 		case 9:
 			break;
@@ -44,14 +105,40 @@ int main()
 		case 13:
 			break;
 		case 14:
+			system("cls");
+			if (first) {
+				printf("系统中尚无学生成绩信息，请先输入!\n");
+				system("pause");
+				break;
+			}
+			PrintRecord(n, m, stu);
+			system("pause");
 			break;
 		case 15:
+			system("cls");
+			if (first) {
+				SetPosition(POS_X3, POS_Y);
+				printf("系统中尚无学生成绩信息，请先输入!\n");
+				system("pause");
+				break;
+			}
+			WritetoFile(n, m, stu);
+			system("pause");
 			break;
 		case 16:
+			system("cls");
+			if (ReadfromFile(&n, &m, stu, &first) || first) {
+				SetPosition(POS_X1, 10);
+				printf("尚未输入学生信息或文件打开失败，请先检查\n");
+				system("pause");
+				break;
+			}
+			system("pause");
 			break;
 		case 0:
 			break;
 		default:
+			break;
 		}
 	}
 	return 0;
