@@ -418,7 +418,7 @@ int Ascending(float a, float b)
 }
 
 //按照学生成绩总分对所有学生记录进行升序或降序排序
-void SortbyScore(int n, int m, STU* stu,int(* compare)(float a, float b))
+void SortByScore(int n, int m, STU* stu,int(* compare)(float a, float b))
 {
 	int i, j;
 	int k;
@@ -458,8 +458,8 @@ void StatisticAnalysis(int n, int m, STU* stu)
 	memset(t, 0, sizeof(t));
 	for(i = 0;i < n;i++)
 	{
-		if(stu[i].score[j] >= 0 && stu[i].score[j] < 60)
-		t[0]++:
+		if (stu[i].score[j] >= 0 && stu[i].score[j] < 60)
+			t[0]++;
 		else if(stu[i].score[j] < 70)
 		t[1]++;
 		else if(stu[i].score[j] < 80)

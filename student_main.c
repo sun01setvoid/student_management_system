@@ -103,11 +103,11 @@ int main()
 			{
 				SetPosition(POS_X3,POS_Y);
 				printf("系统中尚无学生成绩信息，请先输入！\n");
-				getch();
+				_getch();
 				break;
 			}
 			SortbyNum(n, m, stu);
-			getch();
+			_getch();
 			break;
 		case 10:
 		system("cls");
@@ -115,11 +115,11 @@ int main()
 			{
 				SetPosition(POS_X3,POS_Y);
 				printf("系统中尚无学生成绩信息，请先输入！\n");
-				getch();
+				_getch();
 				break;
 			}
 			SortbyScore(n, m, stu);
-			getch();
+			_getch();
 			break;
 		case 11:
 			system("cls");
@@ -127,23 +127,23 @@ int main()
 			{
 				SetPosition(POS_X3, POS_Y);
 				printf("系统中尚无学生成绩信息，请先输入！\n");
-				getch();
+				_getch();
 				break;
 			}
 			SortbyScore(n, m, stu, Descending);
-			getch();
+			_getch();
 			break;
 		case 12:
 			system("cls");
 			if(first)
 			{
 				SetPosition(POS_X3, POS_Y);
-				printf("系统中尚无学生成绩信息，请先输入！\n")
-				getch();
+				printf("系统中尚无学生成绩信息，请先输入！\n");
+				_getch();
 				break;
 			}
 			SortbyScore(n, m, stu, Ascending);
-			getch();
+			_getch();
 			break;
 		case 13:
 			system("cls");
@@ -151,11 +151,11 @@ int main()
 			{
 				SetPosition(POS_X3, POS_Y);
 				printf("系统中尚无学生成绩信息，请先输入!\n");
-				getch();
+				_getch();
 				break;
 			}
 			StatisticAnalysis(n, m, stu);
-			getch();
+			_getch();
 			break;
 		case 14:
 			system("cls");
