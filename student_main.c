@@ -96,14 +96,64 @@ int main()
 			system("pause");
 			break;
 		case 9:
+ 			system("cls");
+			if(first)
+			{
+				SetPosition(POS_X3,POS_Y);
+				printf("系统中尚无学生成绩信息，请先输入！\n");
+				getch();
+				break;
+			}
+			SortbyNum(n, m, stu);
+			getch();
 			break;
 		case 10:
+		system("cls");
+			if(first)
+			{
+				SetPosition(POS_X3,POS_Y);
+				printf("系统中尚无学生成绩信息，请先输入！\n");
+				getch();
+				break;
+			}
+			SortbyScore(n, m, stu);
+			getch();
 			break;
 		case 11:
+			system("cls");
+			if(first)
+			{
+				SetPosition(POS_X3, POS_Y);
+				printf("系统中尚无学生成绩信息，请先输入！\n");
+				getch();
+				break;
+			}
+			SortbyScore(n, m, stu, Descending);
+			getch();
 			break;
 		case 12:
+			system("cls");
+			if(first)
+			{
+				SetPosition(POS_X3, POS_Y);
+				printf("系统中尚无学生成绩信息，请先输入！\n")
+				getch();
+				break;
+			}
+			SortbyScore(n, m, stu, Ascending);
+			getch();
 			break;
 		case 13:
+			system("cls");
+			if(first)
+			{
+				SetPosition(POS_X3, POS_Y);
+				printf("系统中尚无学生成绩信息，请先输入!\n");
+				getch();
+				break;
+			}
+			StatisticAnalysis(n, m, stu);
+			getch();
 			break;
 		case 14:
 			system("cls");
@@ -137,8 +187,13 @@ int main()
 			system("pause");
 			break;
 		case 0:
-			break;
+			system("cls");
+			printf("推出系统！\n");
+			exit(0);
 		default:
+			system("cls");
+			printf("输入出错，请重新选择操作！\n");
+			system("pause");
 			break;
 		}
 	}
