@@ -1,3 +1,4 @@
+ï»¿//æµ‹è¯•unicode
 #include "student.h"
 
 int main()
@@ -5,8 +6,8 @@ int main()
 	int n = 0;
 	int m = 0;
 	int i, j;
-	char ch,c;
-	int first = 1;//±ê¼ÇÏµÍ³ÖĞÊÇ·ñÓĞÑ§Éú³É¼¨ĞÅÏ¢
+	char ch, c;
+	int first = 1;//æ ‡è®°ç³»ç»Ÿä¸­æ˜¯å¦æœ‰å­¦ç”Ÿæˆç»©ä¿¡æ¯
 	STU stu[STU_NUM];
 
 	system("mode con cols = 130 lines = 60");
@@ -26,7 +27,7 @@ int main()
 		case 2:
 			system("cls");
 			if (first) {
-				printf("ÏµÍ³ÖĞÉĞÎŞÑ§Éú³É¼¨ĞÅÏ¢£¬ÇëÏÈÊäÈë\n");
+				printf("ç³»ç»Ÿä¸­å°šæ— å­¦ç”Ÿæˆç»©ä¿¡æ¯ï¼Œè¯·å…ˆè¾“å…¥\n");
 				system("pause");
 				break;
 			}
@@ -36,7 +37,7 @@ int main()
 		case 3:
 			system("cls");
 			if (first) {
-				printf("ÏµÍ³ÖĞÉĞÎŞÑ§Éú³É¼¨ĞÅÏ¢£¬ÇëÏÈÊäÈë\n");
+				printf("ç³»ç»Ÿä¸­å°šæ— å­¦ç”Ÿæˆç»©ä¿¡æ¯ï¼Œè¯·å…ˆè¾“å…¥\n");
 				system("pause");
 				break;
 			}
@@ -46,7 +47,7 @@ int main()
 		case 4:
 			system("cls");
 			if (first) {
-				printf("ÏµÍ³ÖĞÉĞÎŞÑ§Éú³É¼¨ĞÅÏ¢£¬ÇëÏÈÊäÈë\n");
+				printf("ç³»ç»Ÿä¸­å°šæ— å­¦ç”Ÿæˆç»©ä¿¡æ¯ï¼Œè¯·å…ˆè¾“å…¥\n");
 				system("pause");
 				break;
 			}
@@ -56,7 +57,7 @@ int main()
 		case 5:
 			system("cls");
 			if (first) {
-				printf("ÏµÍ³ÖĞÉĞÎŞÑ§Éú³É¼¨ĞÅÏ¢£¬ÇëÏÈÊäÈë\n");
+				printf("ç³»ç»Ÿä¸­å°šæ— å­¦ç”Ÿæˆç»©ä¿¡æ¯ï¼Œè¯·å…ˆè¾“å…¥\n");
 				system("pause");
 				break;
 			}
@@ -66,7 +67,7 @@ int main()
 		case 6:
 			system("cls");
 			if (first) {
-				printf("ÏµÍ³ÖĞÉĞÎŞÑ§Éú³É¼¨ĞÅÏ¢£¬ÇëÏÈÊäÈë\n");
+				printf("ç³»ç»Ÿä¸­å°šæ— å­¦ç”Ÿæˆç»©ä¿¡æ¯ï¼Œè¯·å…ˆè¾“å…¥\n");
 				system("pause");
 				break;
 			}
@@ -76,7 +77,7 @@ int main()
 		case 7:
 			system("cls");
 			if (first) {
-				printf("ÏµÍ³ÖĞÉĞÎŞÑ§Éú³É¼¨ĞÅÏ¢£¬ÇëÏÈÊäÈë!\n");
+				printf("ç³»ç»Ÿä¸­å°šæ— å­¦ç”Ÿæˆç»©ä¿¡æ¯ï¼Œè¯·å…ˆè¾“å…¥!\n");
 				system("pause");
 				break;
 			}
@@ -87,7 +88,7 @@ int main()
 			system("cls");
 			if (first) {
 				SetPosition(POS_X3, POS_Y);
-				printf("ÏµÍ³ÖĞÉĞÎŞÑ§Éú³É¼¨ĞÅÏ¢£¬ÇëÏÈÊäÈë!\n");
+				printf("ç³»ç»Ÿä¸­å°šæ— å­¦ç”Ÿæˆç»©ä¿¡æ¯ï¼Œè¯·å…ˆè¾“å…¥!\n");
 				system("pause");
 				break;
 			}
@@ -107,7 +108,7 @@ int main()
 		case 14:
 			system("cls");
 			if (first) {
-				printf("ÏµÍ³ÖĞÉĞÎŞÑ§Éú³É¼¨ĞÅÏ¢£¬ÇëÏÈÊäÈë!\n");
+				printf("ç³»ç»Ÿä¸­å°šæ— å­¦ç”Ÿæˆç»©ä¿¡æ¯ï¼Œè¯·å…ˆè¾“å…¥!\n");
 				system("pause");
 				break;
 			}
@@ -118,7 +119,7 @@ int main()
 			system("cls");
 			if (first) {
 				SetPosition(POS_X3, POS_Y);
-				printf("ÏµÍ³ÖĞÉĞÎŞÑ§Éú³É¼¨ĞÅÏ¢£¬ÇëÏÈÊäÈë!\n");
+				printf("ç³»ç»Ÿä¸­å°šæ— å­¦ç”Ÿæˆç»©ä¿¡æ¯ï¼Œè¯·å…ˆè¾“å…¥!\n");
 				system("pause");
 				break;
 			}
@@ -129,7 +130,7 @@ int main()
 			system("cls");
 			if (ReadfromFile(&n, &m, stu, &first) || first) {
 				SetPosition(POS_X1, 10);
-				printf("ÉĞÎ´ÊäÈëÑ§ÉúĞÅÏ¢»òÎÄ¼ş´ò¿ªÊ§°Ü£¬ÇëÏÈ¼ì²é\n");
+				printf("å°šæœªè¾“å…¥å­¦ç”Ÿä¿¡æ¯æˆ–æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼Œè¯·å…ˆæ£€æŸ¥\n");
 				system("pause");
 				break;
 			}
