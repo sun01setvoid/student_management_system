@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/chenmingyang/Desktop/student_management_system",
+      "program": "/Users/chenmingyang/Desktop/student_management_system/build/Debug/outDebug"
+    }
+  ]
+}

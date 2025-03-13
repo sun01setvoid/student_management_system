@@ -354,3 +354,131 @@ void PrintRecord(int n, int m, STU* stu) {
 	}
 	return;
 }
+
+//按照学号对学生记录进行排序（升序）
+void SortbyNum(int n, int m,STU* stu)
+{
+	int i,j;
+	int k;
+	STU temp;
+
+	for(i = 0;i < n;i++)
+	{
+		k = i;
+		for(j = i + 1;j < n;j++)
+		{
+			if(stu[j].num < stu[k].num)
+			k = j;
+		}
+		if(k != i)
+		{
+			temp = stu[k];
+			stu[k] = stu[i];
+			stu[i] = temp;
+		}
+	}
+	printf("按照学号从小到大对学生记录进行排序");
+}
+
+//按照总成绩进行排序
+void SortbyScore(int n, int m, STU* stu)
+{
+	int i, j;
+	int k;
+	STU temp;
+
+	for(i = 0;i < n;i++)
+	{
+		k = i;
+		for(j = i + 1;i < n;j++)
+		{
+			if(stu[j].sum < stu[k].sum)
+			k = j;
+		}
+		if(k != i)
+		{
+			temp = stu[k];
+			stu[k] = stu[i];
+			stu[i] = temp;
+		}
+		printf("按总分对学生记录升序排序完毕");
+	}
+}
+
+//规定降序排序规则
+int Descending(float a, float b)
+{
+	return a > b;
+}
+
+//规定升序排序规则
+int Ascending(float a, float b)
+{
+	return a < b;
+}
+
+//按照学生成绩总分对所有学生记录进行升序或降序排序
+void SortbyScore(int n, int m, STU* stu,int(* compare)(float a, float b))
+{
+	int i, j;
+	int k;
+	STU temp;
+
+	for(i = 0;i < n;i++)
+	{
+		k = i;
+		for(j = i + 1;j < n;j++)
+		{
+			if((*compare)(stu[j].sum, stu[k].sum))
+			{
+				k = j;
+			}
+		}
+		if(k != i)
+		{
+			temp = stu[k];
+			stu[k] = stu[i];
+			stu[i] = temp;
+		}
+	}
+	printf("按照学生成绩总分对学生记录排序完毕");
+}
+
+//统计并输出各个分数段学生人数及占比
+void StatisticAnalysis(int n, int m, STU* stu)
+{
+	int i, j, t[6];
+
+	for(j = 0;j < m;j++)
+	{
+		printf("\n课程%d成绩统计结果为： \n",j + 1);
+		printf("分数段\t人数\t占比\n");
+	}
+
+	memset(t, 0, sizeof(t));
+	for(i = 0;i < n;i++)
+	{
+		if(stu[i].score[j] >= 0 && stu[i].score[j] < 60)
+		t[0]++:
+		else if(stu[i].score[j] < 70)
+		t[1]++;
+		else if(stu[i].score[j] < 80)
+		t[2]++;
+		else if(stu[i].score[j] < 90)
+		t[3]++;
+		else if(stu[i].score[j] < 100)
+		t[4]++;
+		else if(stu[i].score[j] == 100)
+		t[5]++;
+	}
+
+	for(i = 0;i < 6;i++)
+	{
+		if(i == 0)
+		printf("<60\t%d\t%.2f%%\n",t[i], (float)t[i]/n * 100);
+		else if(i == 5)
+		printf("100\t%d\t%.2f%%\n",t[i], (float)t[i]/n * 100);
+		else
+		printf("%d-%d\t%d\t%.2f%%\n", (i + 5) * 10, (i + 5) * 10 + 9, t[i], (float)t[i]/n * 100);
+	}
+}
