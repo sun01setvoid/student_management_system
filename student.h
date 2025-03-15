@@ -1,4 +1,5 @@
 // hello sun01set
+// hello sun01setvoid
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
