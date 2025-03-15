@@ -114,7 +114,7 @@ void CalculateScoreOfStudent(int n, int m, STU* stu) {
 		for (j = 0;j < m;j++) {
 			stu[i].sum += stu[i].score[j];
 		}
-		stu[i].aver = stu[i].sum / m;
+		stu[i].aver = (float)stu[i].sum / m;
 		printf("第%d个学生：总分=%.2f, 平均分=%.2f\n", i + 1, stu[i].sum, stu[i].aver);
 	}
 }
@@ -141,7 +141,7 @@ void WritetoFile(int n, int m, STU stu[]) {
 	//定义文件指针
 	FILE* fp;
 	//打开文件,指定文件的处理方式为写入，并让指针指向文件
-	if ((fopen_s(&fp, "D:\\Vsproject\\student_management_system\\student.txt", "w")) != 0) {
+	if ((fopen_s(&fp, "D:\code\git\student.txt", "w")) != 0) {
 		printf("");
 		exit(0);
 	}
@@ -165,7 +165,7 @@ int ReadfromFile(int* n, int* m, STU stu[], int* first)
 	int i, j;
 	int posy = 8;
 	SetPosition(POS_X1, posy);
-	if ((fopen_s(&fp, "D:\\Vsproject\\student_management_system\\student.txt", "r")) != 0)
+	if ((fopen_s(&fp, "D:\code\git\student.txt", "r")) != 0)
 	{
 		printf("磁盘文件无法打开！");
 		return 1;
@@ -224,7 +224,7 @@ void SearchByNumber(int n, int m, STU* stu) {
 			for (j = 0;j < m;j++) {
 				printf("%10.2f", stu[i].score[j]);
 			}
-			printf("%10.2f%10.2f", stu[i].sum, stu[i].aver);
+			printf("%10.2f %10.2f", stu[i].sum, stu[i].aver);
 			return;
 		}
 	}
@@ -354,9 +354,32 @@ void PrintRecord(int n, int m, STU* stu) {
 	}
 	return;
 }
+//按照学生姓名字典顺序进行排序
+void SortbyName(int n, int m, STU stu[])
+{
+	int i, j;
+	STU temp;
+
+	for (i = 0;i < n;i++)
+	{
+		for (j = 0;j < n - 1 - i;j++)
+		{
+			if (strcmp(stu[j].name, stu[j + 1].name) > 0)
+			{
+				temp = stu[j];
+				stu[j] = stu[j + 1];
+				stu[j + 1] = temp;
+			}
+		}
+	}
+	printf("按姓名字典对学生记录排序完成");
+	return;
+}
+
+
 
 //按照学号对学生记录进行排序（升序）
-void SortbyNum(int n, int m,STU* stu)
+void SortByNum(int n, int m,STU* stu)
 {
 	int i,j;
 	int k;
@@ -381,29 +404,7 @@ void SortbyNum(int n, int m,STU* stu)
 }
 
 //按照总成绩进行排序
-void SortbyScore(int n, int m, STU* stu)
-{
-	int i, j;
-	int k;
-	STU temp;
 
-	for(i = 0;i < n;i++)
-	{
-		k = i;
-		for(j = i + 1;i < n;j++)
-		{
-			if(stu[j].sum < stu[k].sum)
-			k = j;
-		}
-		if(k != i)
-		{
-			temp = stu[k];
-			stu[k] = stu[i];
-			stu[i] = temp;
-		}
-		printf("按总分对学生记录升序排序完毕");
-	}
-}
 
 //规定降序排序规则
 int Descending(float a, float b)
