@@ -26,23 +26,22 @@ typedef struct student
 
 int Menu(void);
 void SetPosition(int x, int y);
-void InputRecord( int* n, int* m,STU stu[]);
-void AppendRecord( int* n, int m, STU stu[]);
-void DeleteRecord( int* n, int m, STU stu[]);
-void SearchByNumber( int n, int m, STU stu[]);
-void SearchByName( int n, int m, STU stu[]);
-void ModifyRecord( int n, int m, STU stu[]);
-void CalculateScoreOfStudent( int n, int m, STU stu[]);
-void CalculateScoreOfCourse( int n, int m, STU stu[]);
-void SortByNumber(STU stu[], int n, int m);
-void SortByName(STU stu[], int n, int m);
-void SortByScore(STU stu[], int n, int m, int (*compare)(float a, float b));
-void SortbyScore(STU stu[], int n, int m);
+void InputRecord(int* n, int* m, STU stu[]);
+void AppendRecord(int* n, int m, STU stu[]);
+void DeleteRecord(int* n, int m, STU stu[]);
+void SearchByNum(int n, int m, STU stu[]);
+void SearchByName(int n, int m, STU stu[]);
+void ModifyRecord(int n, int m, STU stu[]);
+void CalculateScoreOfStudent(int n, int m, STU stu[]);
+void CalculateScoreOfCourse(int n, int m, STU stu[]);
+void SortByNum(int n, int m, STU stu[]);
+void SortByName(int n, int m, STU stu[]);
+void SortByScore(int n, int m, STU stu[], int (*compare)(float a, float b));
 int Ascending(float a, float b);
 int Descending(float a, float b);
-void StatisticAnalysis(int n, int m,STU stu[]);
-void PrintRecord( int n, int m, STU stu[]);
-void WritetoFile( int n, int m, STU stu[]);
-int ReadfromFile( int* n, int* m, STU stu[],int *first);
+void StatisticAnalysis(int n, int m, STU stu[]);
+void PrintRecord(int n, int m, STU stu[]);
+void WritetoFile(int n, int m, STU stu[]);
+int ReadfromFile(int* n, int* m, STU stu[], int* first);
 void Hide();
 
