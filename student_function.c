@@ -1,6 +1,7 @@
 ﻿#include "student.h"
 
 //设置光标位置
+//台式
 void SetPosition(int x, int y) {
 	HANDLE hout;
 	COORD cor;
