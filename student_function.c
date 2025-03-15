@@ -141,9 +141,9 @@ void WritetoFile(int n, int m, STU stu[]) {
 	//定义文件指针
 	FILE* fp;
 	//打开文件,指定文件的处理方式为写入，并让指针指向文件
-	if ((fopen_s(&fp, "D:\\Vsproject\\student_management_system\\student.txt", "w")) != 0) {
+	if ((fopen_s(&fp, "student.txt", "w")) != 0) {
 		printf("");
-		exit(0);
+		return 0;
 	}
 	//将文件按指定格式写入文件
 	fprintf(fp, "%10d%10d\n", n, m);
@@ -209,26 +209,6 @@ void AppendRecord(int* n, int m, STU stu[])
 	}
 	*n = *n + num_record;
 	printf("添加完毕!\n");
-	return;
-}
-//按学号找
-void SearchByNumber(int n, int m, STU* stu) {
-	long id;
-	int i, j;
-	printf("请输入你要查找的学生的学号：");
-	scanf_s("%ld", &id);
-	for (i = 0;i < n;i++) {
-		if (stu[i].num == id) {
-			printf("找到了，该学号对应的学生信息：\n");
-			printf("%10ld%15s", stu[i].num, stu[i].name);
-			for (j = 0;j < m;j++) {
-				printf("%10.2f", stu[i].score[j]);
-			}
-			printf("%10.2f%10.2f", stu[i].sum, stu[i].aver);
-			return;
-		}
-	}
-	printf("未找到这个学号对应的学生记录");
 	return;
 }
 //按姓名查找
@@ -356,7 +336,7 @@ void PrintRecord(int n, int m, STU* stu) {
 }
 
 //按照学号对学生记录进行排序（升序）
-void SortbyNum(int n, int m,STU* stu)
+void SortByNumber(int n, int m,STU* stu)
 {
 	int i,j;
 	int k;
@@ -381,7 +361,7 @@ void SortbyNum(int n, int m,STU* stu)
 }
 
 //按照总成绩进行排序
-void SortbyScore(int n, int m, STU* stu)
+void SortByScore(int n, int m, STU* stu)
 {
 	int i, j;
 	int k;
