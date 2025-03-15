@@ -1,7 +1,6 @@
 ﻿#include "student.h"
 
 //设置光标位置
-//台式
 void SetPosition(int x, int y) {
 	HANDLE hout;
 	COORD cor;
@@ -115,7 +114,7 @@ void CalculateScoreOfStudent(int n, int m, STU* stu) {
 		for (j = 0;j < m;j++) {
 			stu[i].sum += stu[i].score[j];
 		}
-		stu[i].aver = stu[i].sum / m;
+		stu[i].aver = (float)stu[i].sum / m;
 		printf("第%d个学生：总分=%.2f, 平均分=%.2f\n", i + 1, stu[i].sum, stu[i].aver);
 	}
 }
@@ -142,9 +141,9 @@ void WritetoFile(int n, int m, STU stu[]) {
 	//定义文件指针
 	FILE* fp;
 	//打开文件,指定文件的处理方式为写入，并让指针指向文件
-	if ((fopen_s(&fp, "student.txt", "w")) != 0) {
+	if ((fopen_s(&fp, "D:\code\git\student.txt", "w")) != 0) {
 		printf("");
-		return 0;
+		exit(0);
 	}
 	//将文件按指定格式写入文件
 	fprintf(fp, "%10d%10d\n", n, m);
@@ -166,7 +165,7 @@ int ReadfromFile(int* n, int* m, STU stu[], int* first)
 	int i, j;
 	int posy = 8;
 	SetPosition(POS_X1, posy);
-	if ((fopen_s(&fp, "D:\\Vsproject\\student_management_system\\student.txt", "r")) != 0)
+	if ((fopen_s(&fp, "D:\code\git\student.txt", "r")) != 0)
 	{
 		printf("磁盘文件无法打开！");
 		return 1;
@@ -212,6 +211,26 @@ void AppendRecord(int* n, int m, STU stu[])
 	printf("添加完毕!\n");
 	return;
 }
+//按学号找
+void SearchByNumber(int n, int m, STU* stu) {
+	long id;
+	int i, j;
+	printf("请输入你要查找的学生的学号：");
+	scanf_s("%ld", &id);
+	for (i = 0;i < n;i++) {
+		if (stu[i].num == id) {
+			printf("找到了，该学号对应的学生信息：\n");
+			printf("%10ld%15s", stu[i].num, stu[i].name);
+			for (j = 0;j < m;j++) {
+				printf("%10.2f", stu[i].score[j]);
+			}
+			printf("%10.2f %10.2f", stu[i].sum, stu[i].aver);
+			return;
+		}
+	}
+	printf("未找到这个学号对应的学生记录");
+	return;
+}
 //按姓名查找
 void SearchByName(int n, int m, STU* stu) {
 	int flag = 1;
@@ -224,12 +243,12 @@ void SearchByName(int n, int m, STU* stu) {
 		if (strcmp(stu[i].name, name) == 0) {
 			printf("找到了，第%d学生信息为：\n", ++k);
 			printf("%10ld%15s", stu[i].num, stu[i].name);
+			for (j = 0;j < m;j++) {
+				printf("%10.2f", stu[i].score[j]);
+			}
+			printf("%10.2f%10.2f\n", stu[i].sum, stu[i].aver);
+			flag = 0;
 		}
-		for (j = 0;j < m;j++) {
-			printf("%10.2f", stu[i].score[j]);
-		}
-		printf("%10.2f%10.2f\n", stu[i].sum, stu[i].aver);
-		flag = 0;
 	}
 	if (flag) {
 		printf("未找到这个姓名对应的学生记录\n");
@@ -335,23 +354,46 @@ void PrintRecord(int n, int m, STU* stu) {
 	}
 	return;
 }
+//按照学生姓名字典顺序进行排序
+void SortbyName(int n, int m, STU stu[])
+{
+	int i, j;
+	STU temp;
+
+	for (i = 0;i < n;i++)
+	{
+		for (j = 0;j < n - 1 - i;j++)
+		{
+			if (strcmp(stu[j].name, stu[j + 1].name) > 0)
+			{
+				temp = stu[j];
+				stu[j] = stu[j + 1];
+				stu[j + 1] = temp;
+			}
+		}
+	}
+	printf("按姓名字典对学生记录排序完成");
+	return;
+}
+
+
 
 //按照学号对学生记录进行排序（升序）
-void SortByNumber(int n, int m,STU* stu)
+void SortByNum(int n, int m, STU* stu)
 {
-	int i,j;
+	int i, j;
 	int k;
 	STU temp;
 
-	for(i = 0;i < n;i++)
+	for (i = 0;i < n;i++)
 	{
 		k = i;
-		for(j = i + 1;j < n;j++)
+		for (j = i + 1;j < n;j++)
 		{
-			if(stu[j].num < stu[k].num)
-			k = j;
+			if (stu[j].num < stu[k].num)
+				k = j;
 		}
-		if(k != i)
+		if (k != i)
 		{
 			temp = stu[k];
 			stu[k] = stu[i];
@@ -362,29 +404,7 @@ void SortByNumber(int n, int m,STU* stu)
 }
 
 //按照总成绩进行排序
-void SortByScore(int n, int m, STU* stu)
-{
-	int i, j;
-	int k;
-	STU temp;
 
-	for(i = 0;i < n;i++)
-	{
-		k = i;
-		for(j = i + 1;i < n;j++)
-		{
-			if(stu[j].sum < stu[k].sum)
-			k = j;
-		}
-		if(k != i)
-		{
-			temp = stu[k];
-			stu[k] = stu[i];
-			stu[i] = temp;
-		}
-		printf("按总分对学生记录升序排序完毕");
-	}
-}
 
 //规定降序排序规则
 int Descending(float a, float b)
@@ -399,23 +419,23 @@ int Ascending(float a, float b)
 }
 
 //按照学生成绩总分对所有学生记录进行升序或降序排序
-void SortByScore(int n, int m, STU* stu,int(* compare)(float a, float b))
+void SortByScore(int n, int m, STU* stu, int(*compare)(float a, float b))
 {
 	int i, j;
 	int k;
 	STU temp;
 
-	for(i = 0;i < n;i++)
+	for (i = 0;i < n;i++)
 	{
 		k = i;
-		for(j = i + 1;j < n;j++)
+		for (j = i + 1;j < n;j++)
 		{
-			if((*compare)(stu[j].sum, stu[k].sum))
+			if ((*compare)(stu[j].sum, stu[k].sum))
 			{
 				k = j;
 			}
 		}
-		if(k != i)
+		if (k != i)
 		{
 			temp = stu[k];
 			stu[k] = stu[i];
@@ -430,36 +450,61 @@ void StatisticAnalysis(int n, int m, STU* stu)
 {
 	int i, j, t[6];
 
-	for(j = 0;j < m;j++)
+	for (j = 0;j < m;j++)
 	{
-		printf("\n课程%d成绩统计结果为： \n",j + 1);
+		printf("\n课程%d成绩统计结果为： \n", j + 1);
 		printf("分数段\t人数\t占比\n");
+		memset(t, 0, sizeof(t));
+		for (i = 0;i < n;i++)
+		{
+			if (stu[i].score[j] >= 0 && stu[i].score[j] < 60)
+				t[0]++;
+			else if (stu[i].score[j] < 70)
+				t[1]++;
+			else if (stu[i].score[j] < 80)
+				t[2]++;
+			else if (stu[i].score[j] < 90)
+				t[3]++;
+			else if (stu[i].score[j] < 100)
+				t[4]++;
+			else if (stu[i].score[j] == 100)
+				t[5]++;
+		}
+		for (i = 0;i < 6;i++)
+		{
+			if (i == 0)
+				printf("<60\t%d\t%.2f%%\n", t[i], (float)t[i] / n * 100);
+			else if (i == 5)
+				printf("100\t%d\t%.2f%%\n", t[i], (float)t[i] / n * 100);
+			else
+				printf("%d-%d\t%d\t%.2f%%\n", (i + 5) * 10, (i + 5) * 10 + 9, t[i], (float)t[i] / n * 100);
+		}
 	}
-
+	printf("\n学生成绩平均分统计结果%d成绩统计结果为： \n", j + 1);
+	printf("分数段\t人数\t占比\n");
 	memset(t, 0, sizeof(t));
-	for(i = 0;i < n;i++)
+	for (i = 0;i < n;i++)
 	{
-		if (stu[i].score[j] >= 0 && stu[i].score[j] < 60)
+		if (stu[i].aver >= 0 && stu[i].aver < 60)
 			t[0]++;
-		else if(stu[i].score[j] < 70)
-		t[1]++;
-		else if(stu[i].score[j] < 80)
-		t[2]++;
-		else if(stu[i].score[j] < 90)
-		t[3]++;
-		else if(stu[i].score[j] < 100)
-		t[4]++;
-		else if(stu[i].score[j] == 100)
-		t[5]++;
+		else if (stu[i].aver < 70)
+			t[1]++;
+		else if (stu[i].aver < 80)
+			t[2]++;
+		else if (stu[i].aver < 90)
+			t[3]++;
+		else if (stu[i].aver < 100)
+			t[4]++;
+		else if (stu[i].aver == 100)
+			t[5]++;
 	}
-
-	for(i = 0;i < 6;i++)
+	for (i = 0;i < 6;i++)
 	{
-		if(i == 0)
-		printf("<60\t%d\t%.2f%%\n",t[i], (float)t[i]/n * 100);
-		else if(i == 5)
-		printf("100\t%d\t%.2f%%\n",t[i], (float)t[i]/n * 100);
+		if (i == 0)
+			printf("<60\t%d\t%.2f%%\n", t[i], (float)t[i] / n * 100);
+		else if (i == 5)
+			printf("100\t%d\t%.2f%%\n", t[i], (float)t[i] / n * 100);
 		else
-		printf("%d-%d\t%d\t%.2f%%\n", (i + 5) * 10, (i + 5) * 10 + 9, t[i], (float)t[i]/n * 100);
+			printf("%d-%d\t%d\t%.2f%%\n", (i + 5) * 10, (i + 5) * 10 + 9, t[i], (float)t[i] / n * 100);
 	}
 }
