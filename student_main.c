@@ -1,6 +1,4 @@
-﻿//测试unicode
-//测试远程拉取请求
-//再火一回!
+﻿//双链表
 #include "student.h"
 
 int main()
@@ -103,11 +101,11 @@ int main()
 			{
 				SetPosition(POS_X3,POS_Y);
 				printf("系统中尚无学生成绩信息，请先输入！\n");
-				_getch();
+				system("pause");
 				break;
 			}
 			SortbyNum(n, m, stu);
-			_getch();
+			system("pause");
 			break;
 		case 10:
 		system("cls");
@@ -115,11 +113,11 @@ int main()
 			{
 				SetPosition(POS_X3,POS_Y);
 				printf("系统中尚无学生成绩信息，请先输入！\n");
-				_getch();
+				system("pause");
 				break;
 			}
 			SortbyScore(n, m, stu);
-			_getch();
+			system("pause");
 			break;
 		case 11:
 			system("cls");
@@ -127,11 +125,11 @@ int main()
 			{
 				SetPosition(POS_X3, POS_Y);
 				printf("系统中尚无学生成绩信息，请先输入！\n");
-				_getch();
+				system("pause");
 				break;
 			}
 			SortbyScore(n, m, stu, Descending);
-			_getch();
+			system("pause");
 			break;
 		case 12:
 			system("cls");
@@ -139,11 +137,11 @@ int main()
 			{
 				SetPosition(POS_X3, POS_Y);
 				printf("系统中尚无学生成绩信息，请先输入！\n");
-				_getch();
+				system("pause");
 				break;
 			}
 			SortbyScore(n, m, stu, Ascending);
-			_getch();
+			system("pause");
 			break;
 		case 13:
 			system("cls");
@@ -151,11 +149,11 @@ int main()
 			{
 				SetPosition(POS_X3, POS_Y);
 				printf("系统中尚无学生成绩信息，请先输入!\n");
-				_getch();
+				system("pause");
 				break;
 			}
 			StatisticAnalysis(n, m, stu);
-			_getch();
+			system("pause");
 			break;
 		case 14:
 			system("cls");

@@ -3,8 +3,7 @@
 #include<string.h>
 #include<windows.h>
 #include <conio.h>
-//melon
-
+//╦др╩об
 #define MAX_VAL 1000
 #define STU_NUM 50
 #define COURSE_NUM 10
