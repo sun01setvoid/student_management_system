@@ -99,24 +99,38 @@ void InputRecord(int* n, int* m, STU* stu) {
 			SetPosition(POS_X2, posy);
 			printf("不是哥们,咱们班几个人");
 		}
-		SetPosition(POS_X2, posy += 2);
-		printf("输入课程门数（m<%d）:", COURSE_NUM);
-		while (scanf_s("%d", n) != EOF) {
-			if (*n <= 50 && *n > 0) {
-				break;
-			}
-			else if (*n == 0) {
-				SetPosition(POS_X2, posy);
-				printf("没有信息吗???");
-			}
-			else if (*n < 0) {
-				SetPosition(POS_X2, posy);
-				printf("你们班负一个课程");
-			}
-			else {
-				SetPosition(POS_X2, posy);
-				printf("不是哥们,咱们几个课程");
-			}
+		SetPosition(POS_X2, posy + 1);
+		system("pause");
+		system("cls");
+		SetPosition(POS_X2, posy);
+		printf("输入学生人数(n<%d): ", STU_NUM);
+	}
+	SetPosition(POS_X2, posy += 2);
+	printf("输入课程门数（m<%d）:", COURSE_NUM);
+	while (scanf_s("%d", n) != EOF) {
+		if (*n <= 50 && *n > 0) {
+			break;
+		}
+		else if (*n == 0) {
+			SetPosition(POS_X2, posy);
+			printf("没有信息吗???");
+		}
+		else if (*n < 0) {
+			SetPosition(POS_X2, posy);
+			printf("你们班负一个课程");
+		}
+		else {
+			SetPosition(POS_X2, posy);
+			printf("不是哥们,咱们几个课程");
+		}
+		SetPosition(POS_X2, posy + 1);
+		system("pause");
+		system("cls");
+		SetPosition(POS_X2, posy - 2);
+		printf("输入学生人数(n<%d): %d", STU_NUM, *n);
+		SetPosition(POS_X2, posy);
+		printf("输入课程门数(m<%d): ", COURSE_NUM);
+	}
 			for (i = 0; i < 2; i++) {
 				SetPosition(POS_X1, ++posy);
 				for (j = 0; j < 55; j++) {
@@ -152,8 +166,6 @@ void InputRecord(int* n, int* m, STU* stu) {
 					stu = temp;
 				}
 			}
-		}
-	}
 }
 //计算学生成绩
 void CalculateScoreOfStudent(int n, int m, STU* stu) {
