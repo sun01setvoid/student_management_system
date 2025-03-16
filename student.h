@@ -12,7 +12,6 @@
 #define POS_X3 50
 #define POS_X4 65
 #define POS_Y 3
-//ABCD±ğÂÒÂëÇóÇóÄã
 
 typedef struct student
 {
