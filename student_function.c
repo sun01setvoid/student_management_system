@@ -139,42 +139,44 @@ void InputRecord(int* n, int* m, STU* stu, STU* head)
 		SetPosition(POS_X2, posy);
 		printf("输入课程门数(m<%d): ", COURSE_NUM);
 	}
-			for (i = 0; i < 2; i++) {
-				SetPosition(POS_X1, ++posy);
-				for (j = 0; j < 55; j++) {
-					printf("-");
-				}
-			}
-			SetPosition(POS_X2, ++posy);
-			printf("输入学生的学号、姓名和各门课程成绩：");
-			for (i = 0; i < *n; i++) {
-				SetPosition(POS_X2, ++posy);
-				printf("输入第%d个学生信息：\t", i + 1);
-				STU* temp = (STU*)malloc(sizeof(STU));
-				if (temp == NULL) {
-					printf("内存分配失败！\n");
-					exit(1);
-				}
-				scanf_s("%ld %s", &temp->num, temp->name, (unsigned)_countof(temp->name));//指定大小防止溢出
-				for (j = 0; j < *m; j++) {
-					scanf_s("%f", &temp->score[j]);
-				}
-
-				if (stu == NULL)
-				{
-					stu = temp;
-					head->prior = NULL;
-					head->next = stu;
-					stu->prior = head;
-				}
-				else
-				{
-					temp->prior = stu;
-					stu->next = temp;
-					temp->next = NULL;
-					stu = temp;
-				}
-			}
+	for (i = 0; i < 2; i++) {
+		SetPosition(POS_X1, ++posy);
+		for (j = 0; j < 55; j++) {
+			printf("-");
+		}
+	}
+	SetPosition(POS_X2, ++posy);
+	printf("输入学生的学号、姓名和各门课程成绩：");
+	for (i = 0; i < *n; i++) {
+		SetPosition(POS_X2, ++posy);
+		printf("输入第%d个学生信息：\t", i + 1);
+		STU* temp = (STU*)malloc(sizeof(STU));
+		if (temp == NULL) {
+			printf("内存分配失败！\n");
+			exit(1);
+		}
+		scanf_s("%ld %s", &temp->num, temp->name, (unsigned)_countof(temp->name));//指定大小防止溢出
+		for (j = 0; j < *m; j++) {
+			scanf_s("%f", &temp->score[j]);
+		}
+		if (stu == NULL)
+		{
+			stu = temp;
+			head->prior = NULL;
+			head->next = stu;
+			stu->prior = head;
+		}
+		else
+		{
+			temp->prior = stu;
+			stu->next = temp;
+			temp->next = NULL;
+			stu = temp;
+		}
+	}
+	SetPosition(POS_X2, ++posy);
+	printf("输入完毕!\n");
+	system("pause");
 }
 //计算学生成绩
 void CalculateScoreOfStudent(int n, int m, STU* stu) {
@@ -207,56 +209,68 @@ void CalculateScoreOfCourse(int n, int m, STU stu[]) {
 	}
 }
 //学生记录存盘
-void WritetoFile(int n, int m, STU stu[]) {
+void WritetoFile(int n, int m, STU* head) {
 	int i, j;
-	//定义文件指针
+	// 定义文件指针
 	FILE* fp;
-	//打开文件,指定文件的处理方式为写入，并让指针指向文件
+	// 打开文件, 指定文件的处理方式为写入，并让指针指向文件
 	if ((fopen_s(&fp, "D:\\IIITEM!\\student_management_system\\student.txt", "w")) != 0) {
-		printf("");
+		printf("打开文件失败\n");
 		exit(0);
 	}
-	//将文件按指定格式写入文件
+	// 将文件按指定格式写入文件
 	fprintf(fp, "%10d%10d\n", n, m);
-	for (i = 0;i < n;i++) {
-		fprintf(fp, "%10ld%10s\n", stu[i].num, stu[i].name);
-		for (j = 0;j < m;j++) {
-			fprintf(fp, "%10.1f", stu[i].score[j]);
+	STU* current = head->next; // 跳过头节点
+	while (current != NULL) {
+		fprintf(fp, "%10ld%10s\n", current->num, current->name);
+		for (j = 0; j < m; j++) {
+			fprintf(fp, "%10.1f", current->score[j]);
 		}
-		fprintf(fp, "%10.1f%10.1f\n", stu[i].sum, stu[i].aver);
+		fprintf(fp, "%10.1f%10.1f\n", current->sum, current->aver);
+		current = current->next;
 	}
 	fclose(fp);
-	//提示用户存盘操作完毕
+	// 提示用户存盘操作完毕
 	printf("存盘完毕!\n");
 }
+
+
 //从磁盘中读取学生记录
-int ReadfromFile(int* n, int* m, STU stu[], int* first)
-{
+int ReadfromFile(int* n, int* m, STU* head, int* first) {
 	FILE* fp;
 	int i, j;
 	int posy = 8;
 	SetPosition(POS_X1, posy);
-	if ((fopen_s(&fp, "D:\\Vsproject\\student_management_system\\student.txt", "r")) != 0)
-	{
+	if ((fopen_s(&fp, "D:\\IIITEM!\\student_management_system\\student.txt", "r")) != 0) {
 		printf("磁盘文件无法打开！");
-		return 1;
+		exit(0);
 	}
 	fscanf_s(fp, "%10d%10d", n, m);
-	for (i = 0;i < *n;i++)
-	{
-		fscanf_s(fp, "%10ld", &stu[i].num);
-		fscanf_s(fp, "%10s", stu[i].name, (unsigned)sizeof(stu[i].name));
-		for (j = 0;j < *m;j++)
-		{
-			fscanf_s(fp, "%10f", &stu[i].score[j]);
+	STU* current = head;
+	for (i = 0; i < *n; i++) {
+		STU* temp = (STU*)malloc(sizeof(STU));
+		if (temp == NULL) {
+			printf("内存分配失败！\n");
+			exit(1);
 		}
-		fscanf_s(fp, "%10f%10f", &stu[i].sum, &stu[i].aver);
+		fscanf_s(fp, "%10ld", &temp->num);
+		fscanf_s(fp, "%10s", temp->name, (unsigned)sizeof(temp->name));
+		for (j = 0; j < *m; j++) {
+			fscanf_s(fp, "%10f", &temp->score[j]);
+		}
+		fscanf_s(fp, "%10f%10f", &temp->sum, &temp->aver);
+		temp->next = NULL;
+		temp->prior = current;
+		current->next = temp;
+		current = temp;
 	}
 	*first = 0;
 	fclose(fp);
 	printf("数据从磁盘读取完毕！");
 	return 0;
 }
+
+
 //增加学生记录
 void AppendRecord(int* n, int m, STU stu[])
 {
@@ -381,7 +395,7 @@ void ModifyRecord(int n, int m, STU* stu) {
 			}
 			printf("%10.2f%10.2f\n", stu[i].sum, stu[i].aver);
 			printf("请确认是否需要修改？（Y/y或N/n）：");
-			getchar();
+			system("pause");
 			scanf_s("%c", &ch);
 			if (ch == 'Y' || ch == 'y') {
 				printf("请输入要修改的学生信息：");

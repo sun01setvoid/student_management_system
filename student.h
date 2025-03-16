@@ -41,7 +41,7 @@ int Ascending(float a, float b);
 int Descending(float a, float b);
 void InputRecord(int* n, int* m, STU* stu, STU* head);
 void PrintRecord( int n, int m, STU stu[]);
-void WritetoFile( int n, int m, STU stu[]);
+void WritetoFile( int n, int m, STU* stu);
 int ReadfromFile( int* n, int* m, STU stu[],int *first);
 void Hide();
 
