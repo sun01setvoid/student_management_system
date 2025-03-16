@@ -1,7 +1,4 @@
-﻿//测试unicode
-//测试远程拉取请求
-//再火一回!
-#include "student.h"
+﻿#include "student.h"
 
 int main()
 {
@@ -130,7 +127,7 @@ int main()
 				_getch();
 				break;
 			}
-			SortbyScore(n, m, stu, Descending);
+			SortByScore(n, m, stu, Descending);
 			_getch();
 			break;
 		case 12:
@@ -142,7 +139,7 @@ int main()
 				_getch();
 				break;
 			}
-			SortbyScore(n, m, stu, Ascending);
+			SortByScore(n, m, stu, Ascending);
 			_getch();
 			break;
 		case 13:
