@@ -12,7 +12,7 @@
 #define POS_X3 50
 #define POS_X4 65
 #define POS_Y 3
-//ABCD那我问你
+//ABCD那你问我
 
 typedef struct student
 {
