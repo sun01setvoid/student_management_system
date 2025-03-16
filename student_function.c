@@ -76,31 +76,82 @@ int Menu() {
 	printf("请选择你想要进行的操作[0-16]: [    ]\b\b\b\b\b");
 	scanf_s("%d", &option);
 	return option;
-}
+}//可以使用easyx更改的.
 //输入学生信息
 void InputRecord(int* n, int* m, STU* stu) {
 	int i, j;
 	int posy = 6;
 	SetPosition(POS_X2, posy);
 	printf("输入学生人数（n<%d）: ", STU_NUM);
-	scanf_s("%d", n);
-	SetPosition(POS_X2, posy += 2);
-	printf("输入课程门数（m<%d）:", COURSE_NUM);
-	scanf_s("%d", m);
-	for (i = 0;i < 2;i++) {
-		SetPosition(POS_X1, ++posy);
-		for (j = 0;j < 55;j++) {
-			printf("-");
+	while (scanf_s("%d", n) != EOF) {
+		if (*n <= 50 && *n > 0) {
+			break;
 		}
-	}
-	SetPosition(POS_X2, ++posy);
-	printf("输入学生的学号、姓名和各门课程成绩：");
-	for (i = 0;i < *n;i++) {
-		SetPosition(POS_X2, ++posy);
-		printf("输入第%d个学生信息：\t", i + 1);
-		scanf_s("%ld%s", &stu[i].num, stu[i].name, (unsigned)sizeof(long) + (unsigned)sizeof(stu[i].name));
-		for (j = 0;j < *m;j++) {
-			scanf_s("%f", &stu[i].score[j]);
+		else if (*n == 0) {
+			SetPosition(POS_X2, posy);
+			printf("没有信息吗???");
+		}
+		else if (*n < 0) {
+			SetPosition(POS_X2, posy);
+			printf("你家负一个人");
+		}
+		else {
+			SetPosition(POS_X2, posy);
+			printf("不是哥们,咱们班几个人");
+		}
+		SetPosition(POS_X2, posy += 2);
+		printf("输入课程门数（m<%d）:", COURSE_NUM);
+		while (scanf_s("%d", n) != EOF) {
+			if (*n <= 50 && *n > 0) {
+				break;
+			}
+			else if (*n == 0) {
+				SetPosition(POS_X2, posy);
+				printf("没有信息吗???");
+			}
+			else if (*n < 0) {
+				SetPosition(POS_X2, posy);
+				printf("你们班负一个课程");
+			}
+			else {
+				SetPosition(POS_X2, posy);
+				printf("不是哥们,咱们几个课程");
+			}
+			for (i = 0; i < 2; i++) {
+				SetPosition(POS_X1, ++posy);
+				for (j = 0; j < 55; j++) {
+					printf("-");
+				}
+			}
+			SetPosition(POS_X2, ++posy);
+			printf("输入学生的学号、姓名和各门课程成绩：");
+			for (i = 0; i < *n; i++) {
+				SetPosition(POS_X2, ++posy);
+				printf("输入第%d个学生信息：\t", i + 1);
+				STU* temp = (STU*)malloc(sizeof(STU));
+				if (temp == NULL) {
+					printf("内存分配失败！\n");
+					exit(1);
+				}
+				scanf_s("%ld %s", &temp->num, temp->name, (unsigned)_countof(temp->name));//指定大小防止溢出
+				for (j = 0; j < *m; j++) {
+					scanf_s("%f", &temp->score[j]);
+				}
+
+				if (stu == NULL)
+				{
+					stu = temp;
+					stu->prior = NULL;
+					stu->next = NULL;
+				}
+				else
+				{
+					temp->prior = stu;
+					stu->next = temp;
+					temp->next = NULL;
+					stu = temp;
+				}
+			}
 		}
 	}
 }
@@ -140,7 +191,7 @@ void WritetoFile(int n, int m, STU stu[]) {
 	//定义文件指针
 	FILE* fp;
 	//打开文件,指定文件的处理方式为写入，并让指针指向文件
-	if ((fopen_s(&fp, "D:\\Vsproject\\student_management_system\\student.txt", "w")) != 0) {
+	if ((fopen_s(&fp, "D:\\IIITEM!\\student_management_system\\student.txt", "w")) != 0) {
 		printf("");
 		exit(0);
 	}

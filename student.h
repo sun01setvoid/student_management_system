@@ -12,7 +12,6 @@
 #define POS_X3 50
 #define POS_X4 65
 #define POS_Y 3
-//中文
 
 typedef struct student
 {
@@ -21,7 +20,8 @@ typedef struct student
 	float score[COURSE_NUM];
 	float sum;
 	float aver;
-	struct student* Next;
+	struct student* prior;
+	struct student* next;
 }STU;
 
 int Menu(void);
