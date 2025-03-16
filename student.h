@@ -3,7 +3,7 @@
 #include<string.h>
 #include<windows.h>
 #include <conio.h>
-//改一下
+//改一下嘛
 #define MAX_VAL 1000
 #define STU_NUM 50
 #define COURSE_NUM 10
