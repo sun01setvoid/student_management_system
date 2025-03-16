@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<windows.h>
@@ -12,7 +12,7 @@
 #define POS_X3 50
 #define POS_X4 65
 #define POS_Y 3
-//ÖÐÎÄ
+//ä¸­æ–‡
 
 typedef struct student
 {
