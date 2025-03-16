@@ -8,7 +8,10 @@ int main()
 	int i, j;
 	char ch, c;
 	int first = 1;//标记系统中是否有学生成绩信息
-	STU stu[STU_NUM];
+	STU* stu;
+	STU* head;
+	stu = NULL;
+	head = (STU*)malloc(sizeof(STU));
 
 	system("mode con cols = 130 lines = 60");
 	system("color 0E");
@@ -20,9 +23,8 @@ int main()
 		{
 		case 1:
 			system("cls");
-			InputRecord(&n, &m, stu);
+			InputRecord(&n, &m, stu, head);
 			first = 0;
-			system("pause");
 			break;
 		case 2:
 			system("cls");

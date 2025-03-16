@@ -16,7 +16,8 @@ void Hide()
 	SetConsoleCursorInfo(hout, &cor_info);
 }
 //主菜单
-int Menu() {
+int Menu() 
+{
 	int posy = 5;
 	int option;		//保存用户输入的操作代码的变量
 	int i, j;
@@ -78,24 +79,28 @@ int Menu() {
 	return option;
 }//可以使用easyx更改的.
 //输入学生信息
-void InputRecord(int* n, int* m, STU* stu) {
+void InputRecord(int* n, int* m, STU* stu, STU* head) 
+{
 	int i, j;
 	int posy = 6;
 	SetPosition(POS_X2, posy);
 	printf("输入学生人数（n<%d）: ", STU_NUM);
-	while (scanf_s("%d", n) != EOF) {
+	while (~scanf_s("%d", n)) {
 		if (*n <= 50 && *n > 0) {
 			break;
 		}
 		else if (*n == 0) {
+			system("cls");
 			SetPosition(POS_X2, posy);
 			printf("没有信息吗???");
 		}
 		else if (*n < 0) {
+			system("cls");
 			SetPosition(POS_X2, posy);
 			printf("你家负一个人");
 		}
 		else {
+			system("cls");
 			SetPosition(POS_X2, posy);
 			printf("不是哥们,咱们班几个人");
 		}
@@ -107,19 +112,22 @@ void InputRecord(int* n, int* m, STU* stu) {
 	}
 	SetPosition(POS_X2, posy += 2);
 	printf("输入课程门数（m<%d）:", COURSE_NUM);
-	while (scanf_s("%d", n) != EOF) {
-		if (*n <= 50 && *n > 0) {
+	while (~scanf_s("%d", m)) {
+		if (*m <= 50 && *m > 0) {
 			break;
 		}
-		else if (*n == 0) {
+		else if (*m == 0) {
+			system("cls");
 			SetPosition(POS_X2, posy);
 			printf("没有信息吗???");
 		}
-		else if (*n < 0) {
+		else if (*m < 0) {
+			system("cls");
 			SetPosition(POS_X2, posy);
 			printf("你们班负一个课程");
 		}
 		else {
+			system("cls");
 			SetPosition(POS_X2, posy);
 			printf("不是哥们,咱们几个课程");
 		}
@@ -155,8 +163,9 @@ void InputRecord(int* n, int* m, STU* stu) {
 				if (stu == NULL)
 				{
 					stu = temp;
-					stu->prior = NULL;
-					stu->next = NULL;
+					head->prior = NULL;
+					head->next = stu;
+					stu->prior = head;
 				}
 				else
 				{
