@@ -3,7 +3,6 @@
 #include<string.h>
 #include<windows.h>
 #include <conio.h>
-//改一下嘛
 #define MAX_VAL 1000
 #define STU_NUM 50
 #define COURSE_NUM 10
@@ -13,6 +12,7 @@
 #define POS_X3 50
 #define POS_X4 65
 #define POS_Y 3
+//ABCD那我问你
 
 typedef struct student
 {
